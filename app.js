@@ -34,7 +34,7 @@ var imgUrl = [
 
 
 
-let all = [];
+
 let counter = 0;
 let numberOfRound = 25;
 
@@ -44,6 +44,7 @@ function conImg(name, imagesrc) {
     this.name = name,
         this.image = imagesrc,
         this.shown = 0;
+        this.timeOfClick=0
     conImg.all.push(this);
 
 
@@ -57,12 +58,23 @@ for (let i = 0; i < imgUrl.length; i++) {
 }
 
 
+let leftImgRan 
+let centerImgRan 
+let rightImgRan 
+
+
 console.log(conImg.all);
 
 function render() {
-    let leftImgRan = ranImg(0, imgUrl.length - 1)
-    let centerImgRan = ranImg(0, imgUrl.length - 1)
-    let rightImgRan = ranImg(0, imgUrl.length - 1)
+    leftImgRan = ranImg(0, imgUrl.length - 1)
+    centerImgRan = ranImg(0, imgUrl.length - 1)
+    rightImgRan = ranImg(0, imgUrl.length - 1)
+
+
+
+
+
+
 
     leftImg.src = './img/' + conImg.all[leftImgRan].image;
     centerImg.src = './img/' + conImg.all[centerImgRan].image;
@@ -84,26 +96,12 @@ function render() {
     ulImg2.appendChild(liImg2)
 
 */
-let lishown = document.getElementById('lishown');
-            lishown.innerHTML=('')
+
 
   //  conImg.all[0].name
 
   
-    for (let i = 0; i < conImg.all.length; i++) {
-
-        if (conImg.all[i].shown > 0) {
-            
-            let ulImg3 = document.createElement('ul')
-            lishown.appendChild(ulImg3)
-
-            
-
-            let liImg3 = document.createElement('li')
-            liImg3.textContent = `${conImg.all[i].name} is appear ${conImg.all[i].shown}`
-            ulImg3.appendChild(liImg3)
-        }
-    }
+   
 
 
 
@@ -130,9 +128,62 @@ render();
 imgSection.addEventListener('click', clickHandler);
 function clickHandler(e) {
     if ((e.target.id === 'leftImg' || e.target.id === 'centerImg' || e.target.id === 'rightImg') && counter < numberOfRound) {
+
+if(e.target.id === 'leftImg'){
+
+    conImg.all[leftImgRan].timeOfClick++;
+
+}
+if(e.target.id === 'centerImg'){
+
+    conImg.all[centerImgRan].timeOfClick++;
+
+}
+if( e.target.id === 'rightImg'){
+
+    conImg.all[rightImgRan].timeOfClick++;
+
+}
+
+
+
         render();
         counter++;
     }
+}
+
+let libutton=document.getElementById('libutton')
+
+libutton.addEventListener('click',showli)
+function showli(){
+
+    for (let i = 0; i < conImg.all.length; i++) {
+        
+        
+
+
+
+        let ulImg3 = document.createElement('ul')
+        lishown.appendChild(ulImg3)
+
+
+
+
+        if (conImg.all[i].shown > 0) {
+            
+            
+    
+            
+
+            let liImg3 = document.createElement('li')
+            liImg3.textContent = `${conImg.all[i].name} is appear ${conImg.all[i].shown} and had  ${conImg.all[i].timeOfClick} votes `
+            ulImg3.appendChild(liImg3)
+        }
+    }
+
+
+
+
 }
 
 
@@ -141,5 +192,6 @@ function clickHandler(e) {
 function ranImg(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
+
 
 
