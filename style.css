@@ -6,7 +6,7 @@
 body{
     
 width: 1000px;
-background-image: url("https://i.stack.imgur.com/jGlzr.png");
+
 
 }
 
@@ -39,6 +39,7 @@ main{
 
 width: 960px;
 margin: auto;
+margin-bottom: 50px;
 
 }
 
@@ -61,7 +62,7 @@ background-color: crimson;
 
 button{
     position: relative;
-    top: 50px;
+    top: 20px;
     left: 50%;
     background-color: bisque;
     width: 150px;
@@ -72,5 +73,12 @@ button{
 footer{
     margin-top: 70px;
 
+
+}
+
+canvas{
+
+
+margin-top: 100px;
 
 }
