@@ -32,7 +32,7 @@ var imgUrl = [
 ];
 
 
-
+let arrRan=[]
 
 
 let counter = 0;
@@ -66,19 +66,24 @@ let rightImgRan
 console.log(conImg.all);
 
 function render() {
-    leftImgRan = ranImg(0, imgUrl.length - 1)
+    
 
     let i=0;
 
     do {
-
+        leftImgRan = ranImg(0, imgUrl.length - 1)
         centerImgRan = ranImg(0, imgUrl.length - 1)
         rightImgRan = ranImg(0, imgUrl.length - 1)
 
 
-    } while (leftImgRan === centerImgRan || centerImgRan === rightImgRan || leftImgRan === rightImgRan || conImg.all[i].name ===conImg.all[i+1].name );
+    } while (leftImgRan === centerImgRan ||
+         centerImgRan === rightImgRan ||
+          leftImgRan === rightImgRan || 
+          arrRan.includes(leftImgRan) ||
+          arrRan.includes(centerImgRan) ||
+          arrRan.includes(rightImgRan)  );
 
-arrRan={leftImgRan,centerImgRan,rightImgRan}
+arrRan=[leftImgRan,centerImgRan,rightImgRan]
 
 
 
@@ -139,6 +144,8 @@ render();
 
 imgSection.addEventListener('click', clickHandler);
 function clickHandler(e) {
+
+    
     if ((e.target.id === 'leftImg' || e.target.id === 'centerImg' || e.target.id === 'rightImg') && counter < numberOfRound) {
 
         if (e.target.id === 'leftImg') {
