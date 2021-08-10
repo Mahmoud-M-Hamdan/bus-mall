@@ -39,7 +39,7 @@ let counter = 0;
 let numberOfRound = 25;
 
 
-function conImg(name, imagesrc) {
+function conImg(name, imagesrc,shown = 0) {
 
     this.name = name,
         this.image = imagesrc,
@@ -51,12 +51,12 @@ function conImg(name, imagesrc) {
 }
 
 conImg.all = [];
-
-
+getData()
+/*
 for (let i = 0; i < imgUrl.length; i++) {
     new conImg(imgUrl[i].split('.')[0], imgUrl[i]);
 }
-
+*/
 
 let leftImgRan
 let centerImgRan
@@ -137,6 +137,11 @@ console.log(conImg.all[i].name)
 
     console.log(conImg.all)
 
+
+    localStorage.data = JSON.stringify( conImg.all );
+  console.log( conImg.all );
+
+  localStorage.removeItem('data');
 }
 render();
 
@@ -260,4 +265,16 @@ function createChart() {
     } );
   }
 
- 
+  function getData() {
+    if( localStorage.data ) {
+      let data = JSON.parse( localStorage.data );
+      for( let i = 0; i < data.length; i++ ) {
+        new conImg( data[i].name, data[i].image, data[i].shown );
+      }
+    } else {
+        for (let i = 0; i < imgUrl.length; i++) {
+            new conImg(imgUrl[i].split('.')[0], imgUrl[i]);
+        }
+    }
+  }
+  
