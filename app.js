@@ -39,12 +39,12 @@ let counter = 0;
 let numberOfRound = 25;
 
 
-function conImg(name, imagesrc,shown = 0) {
+function conImg(name, imagesrc,shown = 0,timeOfClick=0) {
 
     this.name = name,
         this.image = imagesrc,
-        this.shown = 0;
-    this.timeOfClick = 0
+        this.shown = shown,
+    this.timeOfClick = timeOfClick,
     conImg.all.push(this);
 
 
@@ -269,7 +269,7 @@ function createChart() {
     if( localStorage.data ) {
       let data = JSON.parse( localStorage.data );
       for( let i = 0; i < data.length; i++ ) {
-        new conImg( data[i].name, data[i].image, data[i].shown );
+        new conImg( data[i].name, data[i].image, data[i].shown,data[i].timeOfClick );
       }
     } else {
         for (let i = 0; i < imgUrl.length; i++) {
