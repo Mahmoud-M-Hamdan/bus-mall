@@ -141,7 +141,7 @@ console.log(conImg.all[i].name)
     localStorage.data = JSON.stringify( conImg.all );
   console.log( conImg.all );
 
-  localStorage.removeItem('data');
+  
 }
 render();
 
